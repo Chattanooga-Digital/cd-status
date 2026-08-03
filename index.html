@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What we're building — Chattanooga.Digital</title>
+<meta name="description" content="Progress board for the Chattanooga.Digital co-op: what's live, what's in testing, what's planned, and what each is waiting on.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="What we're building — Chattanooga.Digital">
+<meta property="og:description" content="What's live, what's in testing, what's planned, and what each is waiting on.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231F6F6B'/%3E%3Cpath d='M7 21c3-6 5-9 9-9s6 3 9 9' stroke='%23FAFAF8' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='12' r='2.5' fill='%23FAFAF8'/%3E%3C/svg%3E">
+<style>
+
+  :root {
+    --ground:        #FAFAF8;
+    --raised:        #FFFFFF;
+    --sunk:          #F0F2F0;
+    --ink:           #14191B;
+    --ink-soft:      #4E5A5D;
+    --ink-faint:     #7C888B;
+    --rule:          #E1E6E3;
+    --accent:        #1F6F6B;
+    --accent-soft:   #E4F0EE;
+    --live:          #2E7D53;
+    --live-soft:     #E4F1E9;
+    --test:          #A96C15;
+    --test-soft:     #F9EFDD;
+    --plan:          #3E6191;
+    --plan-soft:     #E7EDF6;
+    --shadow:        0 1px 2px rgba(20,25,27,.04), 0 10px 30px -18px rgba(20,25,27,.30);
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground:#111618; --raised:#182022; --sunk:#0C1113;
+      --ink:#E6EBE9; --ink-soft:#A5B2B3; --ink-faint:#768588;
+      --rule:#253033; --accent:#4FB3AC; --accent-soft:#123231;
+      --live:#5DBE86; --live-soft:#132A1E;
+      --test:#D8A44E; --test-soft:#2B2415;
+      --plan:#7FA3D6; --plan-soft:#17212F;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#111618; --raised:#182022; --sunk:#0C1113;
+    --ink:#E6EBE9; --ink-soft:#A5B2B3; --ink-faint:#768588;
+    --rule:#253033; --accent:#4FB3AC; --accent-soft:#123231;
+    --live:#5DBE86; --live-soft:#132A1E;
+    --test:#D8A44E; --test-soft:#2B2415;
+    --plan:#7FA3D6; --plan-soft:#17212F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+  }
+  :root[data-theme="light"] {
+    --ground:#FAFAF8; --raised:#FFFFFF; --sunk:#F0F2F0;
+    --ink:#14191B; --ink-soft:#4E5A5D; --ink-faint:#7C888B;
+    --rule:#E1E6E3; --accent:#1F6F6B; --accent-soft:#E4F0EE;
+    --live:#2E7D53; --live-soft:#E4F1E9;
+    --test:#A96C15; --test-soft:#F9EFDD;
+    --plan:#3E6191; --plan-soft:#E7EDF6;
+    --shadow:0 1px 2px rgba(20,25,27,.04), 0 10px 30px -18px rgba(20,25,27,.30);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin:0; background:var(--ground); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:1080px; margin:0 auto; padding:56px 24px 100px; }
+  .label {
+    font-family:var(--mono); font-size:11px; letter-spacing:.15em;
+    text-transform:uppercase; font-weight:600;
+  }
+
+  /* masthead */
+  header.mast { margin-bottom:8px; }
+  .mast .label { color:var(--accent); margin:0 0 14px; }
+  h1 {
+    font-size:clamp(34px,6vw,56px); line-height:1.02; letter-spacing:-.03em;
+    font-weight:700; margin:0 0 18px; text-wrap:balance; max-width:16ch;
+  }
+  .dek { font-size:19px; color:var(--ink-soft); margin:0; max-width:60ch; }
+  .updated {
+    margin-top:26px; padding-top:18px; border-top:1px solid var(--rule);
+    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
+  }
+
+  /* stage sections */
+  section { margin-top:64px; }
+  .stage-head { display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px; }
+  .stage-head h2 { font-size:26px; letter-spacing:-.022em; margin:0; font-weight:680; }
+  .count {
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    padding:3px 9px; border-radius:2px; font-weight:600;
+  }
+  .c-live { background:var(--live-soft); color:var(--live); }
+  .c-test { background:var(--test-soft); color:var(--test); }
+  .c-plan { background:var(--plan-soft); color:var(--plan); }
+  .stage-note { color:var(--ink-soft); margin:0 0 24px; max-width:66ch; font-size:15px; }
+
+  .grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); }
+  .item {
+    background:var(--raised); border:1px solid var(--rule); border-radius:4px;
+    padding:22px 24px; box-shadow:var(--shadow); display:flex; flex-direction:column;
+  }
+  .item h3 { margin:0 0 3px; font-size:18px; letter-spacing:-.016em; font-weight:660; }
+  .item .what { font-size:14px; color:var(--ink-faint); margin:0 0 12px; }
+  .item p { margin:0 0 14px; font-size:14.5px; color:var(--ink-soft); }
+  .item p:last-child { margin-bottom:0; }
+  .item .foot { margin-top:auto; padding-top:14px; border-top:1px solid var(--rule); }
+  .blocker {
+    display:block; font-size:13.5px; color:var(--ink-soft);
+  }
+  .blocker b { color:var(--ink); font-weight:640; }
+  .waiting {
+    display:inline-block; margin-top:8px; font-family:var(--mono); font-size:10.5px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--test);
+  }
+  .addr {
+    font-family:var(--mono); font-size:12.5px; color:var(--accent);
+    display:block; margin-bottom:12px;
+  }
+
+  /* shipped list */
+  .shipped { border-top:1px solid var(--rule); }
+  .ship {
+    display:grid; grid-template-columns:96px 1fr; gap:22px;
+    padding:18px 0; border-bottom:1px solid var(--rule); align-items:start;
+  }
+  .ship time { font-family:var(--mono); font-size:12px; color:var(--ink-faint); padding-top:3px; white-space:nowrap; }
+  .ship h4 { margin:0 0 3px; font-size:16px; font-weight:640; letter-spacing:-.012em; }
+  .ship p { margin:0; font-size:14.5px; color:var(--ink-soft); max-width:66ch; }
+
+  /* how it works */
+  .pipeline { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); margin-top:22px; }
+  .step { border-top:2px solid var(--accent); padding-top:15px; }
+  .step .label { color:var(--accent); display:block; margin-bottom:7px; }
+  .step h3 { margin:0 0 7px; font-size:17px; letter-spacing:-.014em; font-weight:640; }
+  .step p { margin:0; font-size:14.5px; color:var(--ink-soft); }
+
+  .callout {
+    margin-top:28px; background:var(--accent-soft); border-left:3px solid var(--accent);
+    padding:18px 22px; border-radius:0 4px 4px 0; font-size:15px;
+  }
+  .callout strong { color:var(--ink); }
+
+  a { color:var(--accent); text-underline-offset:2px; }
+  a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+  footer {
+    margin-top:72px; padding-top:22px; border-top:1px solid var(--rule);
+    font-size:14px; color:var(--ink-faint); max-width:66ch;
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
+  @media (max-width:520px) { .ship { grid-template-columns:1fr; gap:4px; } }
+
+/* --- standalone additions: theme toggle --- */
+.themebar { position:absolute; top:20px; right:24px; }
+.toggle {
+  font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  background:var(--raised); color:var(--ink-soft); border:1px solid var(--rule);
+  border-radius:3px; padding:7px 12px; cursor:pointer; font-weight:600;
+}
+.toggle:hover { color:var(--ink); border-color:var(--ink-faint); }
+.toggle:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+body { position:relative; }
+@media (max-width:620px){ .themebar{ position:static; padding:16px 24px 0; text-align:right; } }
+</style>
+</head>
+<body>
+<div class="themebar"><button class="toggle" id="tt" type="button" aria-label="Switch colour theme">Theme</button></div>
+<div class="wrap">
+
+  <header class="mast">
+    <p class="label">Chattanooga.Digital · progress</p>
+    <h1>What we're building, and where it's up to</h1>
+    <p class="dek">A member-owned digital co-op needs to be legible to its members. This is everything we run, everything we're testing, and everything that's waiting — including what it's waiting on.</p>
+    <p class="updated">Last updated 3 August 2026 · checked against the running systems, not from memory</p>
+  </header>
+
+  <section>
+    <div class="stage-head">
+      <h2>Live</h2>
+      <span class="count c-live">4 services</span>
+    </div>
+    <p class="stage-note">Running in production and open to members today.</p>
+    <div class="grid">
+
+      <div class="item">
+        <h3>The website</h3>
+        <p class="what">Drupal CMS 2</p>
+        <span class="addr">chattanooga.digital</span>
+        <p>Public site — pages, blog, calendar and the sign-up forms. Runs on current Drupal, with the whole site structure defined in code so it can be rebuilt from scratch rather than clicked back together.</p>
+        <div class="foot"><span class="blocker"><b>Healthy.</b> On the current release line.</span></div>
+      </div>
+
+      <div class="item">
+        <h3>The members' hub</h3>
+        <p class="what">Hubzilla</p>
+        <span class="addr">hub.chattanooga.digital</span>
+        <p>Where members have accounts, profiles and shared spaces. It federates, so it can talk to other communities rather than locking anyone in.</p>
+        <div class="foot"><span class="blocker"><b>Healthy.</b> Sending mail; open for sign-ups.</span></div>
+      </div>
+
+      <div class="item">
+        <h3>Community microblog</h3>
+        <p class="what">Mastodon</p>
+        <span class="addr">toot.chattanooga.digital</span>
+        <p>Short-form posting for the community, on the same federated network as the rest of the fediverse.</p>
+        <div class="foot"><span class="blocker"><b>Healthy.</b></span></div>
+      </div>
+
+      <div class="item">
+        <h3>Advisors mailing list</h3>
+        <p class="what">Mailman</p>
+        <span class="addr">list.chattanooga.digital</span>
+        <p>Discussion list for the advisory group, with a public archive so decisions leave a trail.</p>
+        <div class="foot"><span class="blocker"><b>Healthy.</b></span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="stage-head">
+      <h2>In testing</h2>
+      <span class="count c-test">2 services</span>
+    </div>
+    <p class="stage-note">Built and working on our staging environment. Not yet open to members — each is waiting on one specific thing, named below.</p>
+    <div class="grid">
+
+      <div class="item">
+        <h3>Files, calls and documents</h3>
+        <p class="what">Nextcloud — with Talk, Office and Whiteboard</p>
+        <p>Shared file storage, video calls, collaborative document editing and a shared whiteboard. All of it verified working: documents open and edit, whiteboards load, calls connect, notification mail arrives.</p>
+        <p>It was rebuilt this month so that no part of it can reach the wider server — the previous packaging could have, which was not acceptable on a machine shared with other tenants.</p>
+        <div class="foot">
+          <span class="blocker"><b>Waiting on:</b> one DNS record. The deploy is written and runs itself the moment the address resolves.</span>
+          <span class="waiting">ready since 1 August</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <h3>Membership records</h3>
+        <p class="what">CiviCRM</p>
+        <p>Contact and membership management — the system that will eventually handle joining, renewals, event registration and sponsorship.</p>
+        <p>Brought fully up to date this month, including a security fix, and its configuration is now held in version control so upgrades are reviewable instead of ad hoc.</p>
+        <div class="foot">
+          <span class="blocker"><b>Waiting on:</b> a decision about how it connects to the website — whether members sign in once for both, or keep separate logins. That choice is much cheaper to make now than after real member data exists.</span>
+          <span class="waiting">decision open since 2 August</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="stage-head">
+      <h2>Planned</h2>
+      <span class="count c-plan">5 threads</span>
+    </div>
+    <p class="stage-note">Agreed as wanted, not yet started. Listed so the queue is visible rather than implied.</p>
+    <div class="grid">
+
+      <div class="item">
+        <h3>Sign in once</h3>
+        <p class="what">Single sign-on and member self-service</p>
+        <p>One login across the website and member services, so people can manage their own membership, pay dues, register for events and sign up as sponsors without emailing anyone.</p>
+        <div class="foot"><span class="blocker"><b>Depends on:</b> the membership-records decision above.</span></div>
+      </div>
+
+      <div class="item">
+        <h3>Post once, publish everywhere</h3>
+        <p class="what">POSSE</p>
+        <p>Write on our own site, and have it syndicate outward automatically instead of posting the same thing by hand in four places.</p>
+        <div class="foot"><span class="blocker"><b>Next step:</b> confirm the tooling is the right fit before committing to it.</span></div>
+      </div>
+
+      <div class="item">
+        <h3>Work tracking in the open</h3>
+        <p class="what">Shared task boards</p>
+        <p>Move day-to-day tracking into the members' tooling, so contributions can be recorded and eventually recognised rather than living in one person's head.</p>
+        <div class="foot"><span class="blocker"><b>Depends on:</b> the file-and-collaboration service going live.</span></div>
+      </div>
+
+      <div class="item">
+        <h3>A naming scheme for services</h3>
+        <p class="what">Addressing convention</p>
+        <p>A written rule for what new services get called, so addresses stay predictable as more are added. Two near-identical names have already been confused once.</p>
+        <div class="foot"><span class="blocker"><b>Next step:</b> propose a rule against the addresses already in use.</span></div>
+      </div>
+
+      <div class="item">
+        <h3>Review before launch</h3>
+        <p class="what">Standard practice for new services</p>
+        <p>A short, written check that every new service passes before members use it — who reviews it, when, and what counts as sign-off.</p>
+        <div class="foot"><span class="blocker"><b>Next step:</b> write it down, as a companion to the procedures already in place.</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="stage-head"><h2>Recently shipped</h2></div>
+    <p class="stage-note">The last few weeks, most recent first.</p>
+    <div class="shipped">
+      <div class="ship">
+        <time>3 Aug</time>
+        <div>
+          <h4>Membership records brought current, and put under version control</h4>
+          <p>Updated three releases, including a security fix that mattered. Its setup now lives in a repository instead of only inside a control panel, which is what makes moving it to production possible at all.</p>
+        </div>
+      </div>
+      <div class="ship">
+        <time>3 Aug</time>
+        <div>
+          <h4>Every service pinned to a known version</h4>
+          <p>Several services were configured in a way that looked like it kept them updated but silently froze them at whatever was current on the day they were created. All are now explicitly pinned, so a version change is a visible, reviewed decision.</p>
+        </div>
+      </div>
+      <div class="ship">
+        <time>1 Aug</time>
+        <div>
+          <h4>File and collaboration service rebuilt on safer foundations</h4>
+          <p>Replaced the packaged version with one assembled from reviewable parts, removing a component that could have reached other tenants on the shared server.</p>
+        </div>
+      </div>
+      <div class="ship">
+        <time>Late Jul</time>
+        <div>
+          <h4>Website moved to the current Drupal release</h4>
+          <p>Along with the members' hub going live and outgoing mail moving to a provider that reliably delivers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="stage-head"><h2>How something gets from idea to live</h2></div>
+    <p class="stage-note">Worth stating, because it explains why things sit in testing rather than shipping the day they work.</p>
+    <div class="pipeline">
+      <div class="step">
+        <span class="label">First</span>
+        <h3>Built in code</h3>
+        <p>Configuration lives in a repository, not in a control panel. If it only exists somewhere clicked, it can't be reviewed and can't be rebuilt.</p>
+      </div>
+      <div class="step">
+        <span class="label">Then</span>
+        <h3>Rebuilt from scratch</h3>
+        <p>Staging is wiped and rebuilt from that code. That's deliberately harsher than copying production, and it catches faults a warm copy never would.</p>
+      </div>
+      <div class="step">
+        <span class="label">Then</span>
+        <h3>Checked by rendering it</h3>
+        <p>Someone opens the actual pages and uses the actual features. A server replying “fine” is not evidence that anything works.</p>
+      </div>
+      <div class="step">
+        <span class="label">Finally</span>
+        <h3>Opened to members</h3>
+        <p>Only once it's reviewed. Reversing a service after real member data is in it is far more expensive than waiting a week.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>Staging mirrors production's setup, not its contents.</strong> A rebuild wipes the database and starts from what's in the repository, so staging is a faithful copy of how things are configured and deliberately not of members' real data. That's what makes it safe to destroy — and it means a test there won't reveal anything that depends on real content.
+    </div>
+  </section>
+
+  <footer>
+    Maintained alongside the co-op's internal operations record and checked against the running systems each time it changes. If something here looks wrong or out of date, say so — an inaccurate status board is worse than none.
+  </footer>
+
+</div>
+<script>
+(function () {
+  var root = document.documentElement, KEY = "cd-theme";
+  try { var saved = localStorage.getItem(KEY); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+  document.getElementById("tt").addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme");
+    if (!cur) {
+      cur = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    var next = cur === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem(KEY, next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
