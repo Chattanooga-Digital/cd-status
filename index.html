@@ -176,7 +176,7 @@ body { position:relative; }
     <p class="label">Chattanooga.Digital · progress</p>
     <h1>What we're building, and where it's up to</h1>
     <p class="dek">A member-owned digital co-op needs to be legible to its members. This is everything we run, everything we're testing, and everything that's waiting — including what it's waiting on.</p>
-    <p class="updated">Last updated 3 August 2026 · checked against the running systems, not from memory</p>
+    <p class="updated">Last updated 4 August 2026 · checked against the running systems, not from memory</p>
   </header>
 
   <section>
@@ -232,7 +232,7 @@ body { position:relative; }
 
       <div class="item">
         <h3>Files, calls and documents</h3>
-        <p class="what">Nextcloud — with Talk, Office and Whiteboard</p>
+        <p class="what">Nextcloud — with Talk, Office, Whiteboard and task boards</p>
         <p>Shared file storage, video calls, collaborative document editing and a shared whiteboard. All of it verified working: documents open and edit, whiteboards load, calls connect, notification mail arrives.</p>
         <p>It was rebuilt this month so that no part of it can reach the wider server — the previous packaging could have, which was not acceptable on a machine shared with other tenants.</p>
         <div class="foot">
@@ -244,11 +244,11 @@ body { position:relative; }
       <div class="item">
         <h3>Membership records</h3>
         <p class="what">CiviCRM</p>
-        <p>Contact and membership management — the system that will eventually handle joining, renewals, event registration and sponsorship.</p>
-        <p>Brought fully up to date this month, including a security fix, and its configuration is now held in version control so upgrades are reviewable instead of ad hoc.</p>
+        <p>Contact and membership management — joining, renewals, event registration and sponsorship.</p>
+        <p>It now runs <em>inside</em> the website rather than as a separate system with its own address and its own password. That was the open question a fortnight ago, and it is settled: one place to sign in, and a member record and a website account are the same record. Existing contacts and groups have been carried across. Card payments are installed and selectable — everything that can be done without the payment account's own keys is done.</p>
         <div class="foot">
-          <span class="blocker"><b>Waiting on:</b> a decision about how it connects to the website — whether members sign in once for both, or keep separate logins. That choice is much cheaper to make now than after real member data exists.</span>
-          <span class="waiting">decision open since 2 August</span>
+          <span class="blocker"><b>Waiting on:</b> three things, all quick — the payment account's own keys, the legal name and postal address that should appear on receipts and member mail, and a review before it opens to members.</span>
+          <span class="waiting">ready since 4 August</span>
         </div>
       </div>
 
@@ -281,7 +281,8 @@ body { position:relative; }
         <h3>Work tracking in the open</h3>
         <p class="what">Shared task boards</p>
         <p>Move day-to-day tracking into the members' tooling, so contributions can be recorded and eventually recognised rather than living in one person's head.</p>
-        <div class="foot"><span class="blocker"><b>Depends on:</b> the file-and-collaboration service going live.</span></div>
+        <p>A board is now installed on the test system so it can be looked at before anything is committed to. Worth naming the open question rather than assuming it: making work <em>visible</em> and making it <em>accountable</em> are different jobs, and a task board only does the first. If the goal is recording effort so it can be attributed and charged back fairly, that needs deciding before the tracking moves.</p>
+        <div class="foot"><span class="blocker"><b>Depends on:</b> the file-and-collaboration service going live, and a decision on which of those two jobs comes first.</span></div>
       </div>
 
       <div class="item">
@@ -305,6 +306,27 @@ body { position:relative; }
     <div class="stage-head"><h2>Recently shipped</h2></div>
     <p class="stage-note">The last few weeks, most recent first.</p>
     <div class="shipped">
+      <div class="ship">
+        <time>4 Aug</time>
+        <div>
+          <h4>Membership system moved inside the website</h4>
+          <p>Members will sign in once, not twice. Existing contacts and groups carried across, and card payments installed. This had been reported for weeks as blocked by a firewall; it was not. The payment add-on needed a second add-on that happens to be <em>named</em> "firewall", and the error naming it read like a blocked connection. Nothing on the server ever needed opening.</p>
+        </div>
+      </div>
+      <div class="ship">
+        <time>4 Aug</time>
+        <div>
+          <h4>Files uploaded to the membership system were readable by anyone</h4>
+          <p>Attachments could be downloaded by anyone who guessed the address, with no sign-in. The software ships a protection against exactly this, but it only works on a different kind of web server than the one we run, so it was present and doing nothing. Fixed, and confirmed by putting a file there and trying to fetch it before and after.</p>
+        </div>
+      </div>
+      <div class="ship">
+        <time>4 Aug</time>
+        <div>
+          <h4>Scheduled background work had never actually run</h4>
+          <p>The website's routine background tasks were failing silently, which is why the calendar had stopped picking up new events. Fixed on the live site and the test one. Also fixed the reason nobody noticed: the deployment process was reporting failures as successes, so several steps had been quietly failing for weeks while every log said they had worked.</p>
+        </div>
+      </div>
       <div class="ship">
         <time>3 Aug</time>
         <div>
