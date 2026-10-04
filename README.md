@@ -3,7 +3,7 @@
 A single static page showing what the co-op runs, what's in testing, what's planned, and what each
 thing is waiting on. Served by GitHub Pages from this repository.
 
-**Live:** https://tortoisewolfe.github.io/cd-status/
+**Live:** https://chattanooga-digital.github.io/cd-status/
 
 ## Why this exists
 
