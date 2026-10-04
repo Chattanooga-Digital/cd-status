@@ -176,7 +176,7 @@ body { position:relative; }
     <p class="label">Chattanooga.Digital · progress</p>
     <h1>What we're building, and where it's up to</h1>
     <p class="dek">A member-owned digital co-op needs to be legible to its members. This is everything we run, everything we're testing, and everything that's waiting — including what it's waiting on.</p>
-    <p class="updated">Last updated 4 August 2026 · checked against the running systems, not from memory</p>
+    <p class="updated">Last updated 3 October 2026 · checked against the running systems that day, except what is inside the test-system membership records, which was last looked at in August</p>
   </header>
 
   <section>
@@ -200,7 +200,7 @@ body { position:relative; }
         <p class="what">Hubzilla</p>
         <span class="addr">hub.chattanooga.digital</span>
         <p>Where members have accounts, profiles and shared spaces. It federates, so it can talk to other communities rather than locking anyone in.</p>
-        <div class="foot"><span class="blocker"><b>Healthy.</b> Sending mail; open for sign-ups.</span></div>
+        <div class="foot"><span class="blocker"><b>Healthy.</b> Sign-up is by invitation.</span></div>
       </div>
 
       <div class="item">
@@ -208,7 +208,7 @@ body { position:relative; }
         <p class="what">Mastodon</p>
         <span class="addr">toot.chattanooga.digital</span>
         <p>Short-form posting for the community, on the same federated network as the rest of the fediverse.</p>
-        <div class="foot"><span class="blocker"><b>Healthy.</b></span></div>
+        <div class="foot"><span class="blocker"><b>Healthy.</b> Sign-up is by invitation.</span></div>
       </div>
 
       <div class="item">
@@ -244,9 +244,9 @@ body { position:relative; }
         <h3>Membership records</h3>
         <p class="what">CiviCRM</p>
         <p>Contact and membership management — joining, renewals, event registration and sponsorship.</p>
-        <p>It now runs <em>inside</em> the website rather than as a separate system with its own address and its own password. That was the open question a fortnight ago, and it is settled: one place to sign in, and a member record and a website account are the same record. Existing contacts and groups have been carried across. Card payments are installed and selectable — everything that can be done without the payment account's own keys is done.</p>
+        <p>It now runs <em>inside</em> the website rather than as a separate system with its own address and its own password. That was an open question in July, and it is settled: one place to sign in, and a member record and a website account are the same record. Existing contacts and groups were carried across in August. Card payments are installed and selectable — everything that can be done without the payment account's own keys is done.</p>
         <div class="foot">
-          <span class="blocker"><b>Waiting on:</b> three things, all quick — the payment account's own keys, the legal name and postal address that should appear on receipts and member mail, and a review before it opens to members.</span>
+          <span class="blocker"><b>Waiting on:</b> a hands-on trial on the test system by the co-op's administrator, which is the rule before anything holding member records goes live. Also needed: the legal name and postal address that should appear on receipts and member mail, and the payment account's own keys if card payments are wanted at launch.</span>
           <span class="waiting">ready since 4 August</span>
         </div>
       </div>
@@ -259,43 +259,47 @@ body { position:relative; }
       <h2>Planned</h2>
       <span class="count c-plan">5 threads</span>
     </div>
-    <p class="stage-note">Agreed as wanted, not yet started. Listed so the queue is visible rather than implied.</p>
+    <p class="stage-note">Agreed as wanted. Some have not started; where work has begun, the card says how far it has got. Listed so the queue is visible rather than implied.</p>
     <div class="grid">
 
       <div class="item">
         <h3>Sign in once</h3>
         <p class="what">Single sign-on and member self-service</p>
         <p>One login across the website and member services, so people can manage their own membership, pay dues, register for events and sign up as sponsors without emailing anyone.</p>
-        <div class="foot"><span class="blocker"><b>Depends on:</b> the membership-records decision above.</span></div>
+        <p>The co-op has chosen a single central sign-in service. Four candidates are running on the test system so the people evaluating them can try each one; their results are not in yet.</p>
+        <div class="foot"><span class="blocker"><b>Depends on:</b> choosing which sign-in service to use, and the membership records (above) going live.</span></div>
       </div>
 
       <div class="item">
         <h3>Post once, publish everywhere</h3>
         <p class="what">POSSE</p>
         <p>Write on our own site, and have it syndicate outward automatically instead of posting the same thing by hand in four places.</p>
-        <div class="foot"><span class="blocker"><b>Next step:</b> confirm the tooling is the right fit before committing to it.</span></div>
+        <p>The module the co-op asked for has been added to the website's code. It is switched off, so nothing is posted automatically yet.</p>
+        <div class="foot"><span class="blocker"><b>Next step:</b> connect the co-op's microblog account and switch it on.</span></div>
       </div>
 
       <div class="item">
         <h3>Work tracking in the open</h3>
         <p class="what">Shared task boards</p>
         <p>Move day-to-day tracking into the members' tooling, so contributions can be recorded and eventually recognised rather than living in one person's head.</p>
-        <p>A Nextcloud task board (Deck) is now installed on the test system so it can be looked at before anything is committed to. Worth naming the open question rather than assuming it: making work <em>visible</em> and making it <em>accountable</em> are different jobs, and a task board only does the first. If the goal is recording effort so it can be attributed and charged back fairly, that needs deciding before the tracking moves.</p>
-        <div class="foot"><span class="blocker"><b>Depends on:</b> the file-and-collaboration service going live, and a decision on which of those two jobs comes first.</span></div>
+        <p>A Nextcloud task board (Deck) is now running on the live file service, and the co-op's shared operations board is kept there. Worth naming what a board does not do: it makes work <em>visible</em>, but recording effort so it can be attributed and charged back fairly is a different job, and that part has not been started.</p>
+        <div class="foot"><span class="blocker"><b>Waiting on:</b> confirmation that the board meets what was asked for.</span></div>
       </div>
 
       <div class="item">
         <h3>A naming scheme for services</h3>
         <p class="what">Addressing convention</p>
         <p>A written rule for what new services get called, so addresses stay predictable as more are added. Two near-identical names have already been confused once.</p>
-        <div class="foot"><span class="blocker"><b>Next step:</b> propose a rule against the addresses already in use.</span></div>
+        <p>A rule has been drafted against the addresses already in use: one plain name per service, named for what it does rather than the product behind it, with the working addresses left as they are. It has not been adopted.</p>
+        <div class="foot"><span class="blocker"><b>Waiting on:</b> a yes or no on that one choice.</span></div>
       </div>
 
       <div class="item">
         <h3>Review before launch</h3>
         <p class="what">Standard practice for new services</p>
         <p>A short, written check that every new service passes before members use it — who reviews it, when, and what counts as sign-off.</p>
-        <div class="foot"><span class="blocker"><b>Next step:</b> write it down, as a companion to the procedures already in place.</span></div>
+        <p>A draft is written: a checklist for the reviewer, how each finding is classed as a blocker or a follow-up, and what is checked after launch. The practice has already been followed by hand once, for the file service.</p>
+        <div class="foot"><span class="blocker"><b>Waiting on:</b> the people it applies to agreeing the checklist and the sign-off step.</span></div>
       </div>
 
     </div>
